@@ -1,18 +1,37 @@
-import React from "react"
+import React, { useState } from "react"
 import { IProduct } from "../models";
 
 interface ProductProps {
     product: IProduct
 }
 
-export function Product({product}: ProductProps) {
+export function Product({ product }: ProductProps) {
+    const [details, setDetails] = useState(false)
+
+    const btnBgClassName = details ? 'bg-blue-100' : 'bg-yellow-300'
+
+    const btnClasses = ['py-2 px-4 border', btnBgClassName]
+
     return (
         <div
             className="border py-2 px-4 rounded flex flex-col items-center mb-2">
             <img src={product.image} className="w-1/6" alt={product.title} />
-            <p>{ product.title }</p>
-            <span className="font-bold">{ product.price  }</span>
-            <p className="px-2 py-5 text-center font-s">{ product.description }</p>
+
+            <p>{product.title}</p>
+
+            <span className="font-bold">{product.price}</span>
+
+            <button
+                className={btnClasses.join(' ')}
+                onClick={() => setDetails(prev => !prev)}
+            >{details ? 'Hide details' : 'Show more'}</button>
+
+            {details && <div>
+                <p>{product.description}</p>
+                <p>Rate: <span style={{
+                    fontWeight: 900
+                }}>{product.rating.rate}</span></p>
+            </div>}
         </div>
     )
 }
