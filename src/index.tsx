@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { ModalState } from './context/ModalContext';
+import { BrowserRouter } from "react-router-dom";
+import { ProductsPage } from './pages/ProductsPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 
 root.render(
-  <ModalState>
-    <App />
-  </ModalState>
+  <BrowserRouter>
+    <ModalState>
+      <App />
+    </ModalState>
+  </BrowserRouter>
 )
