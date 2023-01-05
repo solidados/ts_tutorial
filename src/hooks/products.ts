@@ -8,6 +8,10 @@ export function useProducts() {
     const [error, setError] = useState('')
     // const AxiosError = require('axios-error');
 
+    function addProduct (product: IProduct){
+        setProducts(prev => [...prev, product])
+    }
+
     async function fetchProducts() {
         try {
             setError('')
@@ -26,5 +30,5 @@ export function useProducts() {
         fetchProducts()
     }, [])
 
-    return { products, error, loading }
+    return { products, error, loading, addProduct }
 }
